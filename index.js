@@ -11,10 +11,10 @@ const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
 const Post = require("./models/Post");
 const PostModel = require("./models/Post");
-
+const PORT = process.env.PORT || 4000
 connectMongoose();
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: "https://car-blog-community-frontend-withoutimg.onrender.com" }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -160,6 +160,6 @@ app.delete("/post/:id", async (req, res) => {
   const postDoc = await Post.deleteOne({ _id: id });
 });
 
-app.listen(4000, () => {
+app.listen(PORT, () => {
   console.log("Connected to 4000 port");
 });
