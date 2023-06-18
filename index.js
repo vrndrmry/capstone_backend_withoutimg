@@ -94,6 +94,7 @@ app.post("/post", uploadMiddleware.single("files"), async (req, res) => {
         content,
         author: info.id,
       });
+      console.log(postDoc)
       res.json(postDoc);
     });
 });
