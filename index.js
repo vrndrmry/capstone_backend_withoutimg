@@ -82,7 +82,7 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("Logout successful");
 });
 
-app.post("/post", async (req, res) => {
+app.post("/post", uploadMiddleware.single("files"), async (req, res) => {
   const token = req.cookies.token;
   console.log(token)
   if (token)
