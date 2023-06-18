@@ -84,6 +84,7 @@ app.post("/logout", (req, res) => {
 
 app.post("/post", uploadMiddleware.single("files"), async (req, res) => {
   const token = req.cookies.token;
+  console.log(token)
   if (token)
     jwt.verify(token, "secret", async (err, info) => {
       if (err) throw err;
@@ -94,7 +95,7 @@ app.post("/post", uploadMiddleware.single("files"), async (req, res) => {
         content,
         author: info.id,
       });
-      console.log(postDoc)
+      console.log({ title, summary, content })
       res.json(postDoc);
     });
 });
